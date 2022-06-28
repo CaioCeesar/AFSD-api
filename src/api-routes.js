@@ -2,8 +2,11 @@ import { postsController } from "./controllers/posts-controller.js";
 import { usersController } from "./controllers/users-controller.js";
 
 export const apiRoutes = [
-    { method: "GET", path: "/api/posts", config: postsController.find },
+    { method: "GET", path: "/api/posts/feed", config: postsController.findFeed },
+    { method: "GET", path: "/api/posts/profile", config: postsController.findProfile },
+    { method: "GET", path: "/api/posts/{id}", config: postsController.findOne },
     { method: "POST", path: "/api/posts", config: postsController.create },
+    { method: "DELETE", path: "/api/posts", config: postsController.deleteAll },
 
     { method: "GET", path: "/api/users", config: usersController.find },
     { method: "GET", path: "/api/users/{id}", config: usersController.findOne },

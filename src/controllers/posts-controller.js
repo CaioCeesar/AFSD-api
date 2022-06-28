@@ -1,14 +1,31 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
+import { decodeToken } from "../jwt-utils.js";
 
 export const postsController = {
-  find: {
+  findFeed: {
     auth: {
       strategy: "jwt",
     },
     handler: async function (request, h) {
       try {
-        const posts = await db.poststore.getAllPosts();
+        const token = decodeToken(request.headers.authorization.split(' ')[1]);
+        const posts = await db.postStore.getFeedPosts(token.userId);
+        return posts;
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+  },
+
+  findProfile: {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request, h) {
+      try {
+        const token = decodeToken(request.headers.authorization.split(' ')[1]);
+        const posts = await db.postStore.getProfilePosts(token.userId);
         return posts;
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
@@ -34,12 +51,11 @@ export const postsController = {
   },
 
   create: {
-    auth: {
-      strategy: "jwt",
-    },
+    auth: false,
     handler: async function (request, h) {
       try {
-        const post = await db.postStore.addPost(request.payload);
+        const token = decodeToken(request.headers.authorization.split(' ')[1]);
+        const post = await db.postStore.addPost(request.payload, token);
         if (post) {
           return h.response(post).code(201);
         }

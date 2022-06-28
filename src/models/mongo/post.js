@@ -7,6 +7,8 @@ const postSchema = new Schema({
   description: String,
   picture: String,
   spots: Array,
+  userId: String,
+  userName: String
 });
 
 export const Post = Mongoose.model("Post", postSchema);

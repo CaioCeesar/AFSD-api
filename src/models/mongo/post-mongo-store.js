@@ -1,8 +1,14 @@
 import { Post } from "./post.js";
 
 export const postMongoStore = {
-  async getAllPosts() {
-    const posts = await Post.find().lean();
+  
+  async getFeedPosts(userId) {
+    const posts = await Post.find({userId: {$ne: userId}}).lean();
+    return posts;
+  },
+
+  async getProfilePosts(userId) {
+    const posts = await Post.find({userId: userId}).lean();
     return posts;
   },
 
@@ -14,8 +20,10 @@ export const postMongoStore = {
     return null;
   },
 
-  async addPost(post) {
-    const newPost = new Post(post);
+  async addPost(post, token) {
+    let newPost = new Post(post);
+    newPost.userId = token.userId;
+    newPost.userName = token.name;
     const postObj = await newPost.save();
     const u = await this.getPostById(postObj._id);
     return u;

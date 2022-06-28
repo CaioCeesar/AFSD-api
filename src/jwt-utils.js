@@ -8,6 +8,7 @@ export function createToken(user) {
   const payload = {
     id: user._id,
     email: user.email,
+    name: user.name
   };
   const options = {
     algorithm: "HS256",
@@ -22,6 +23,7 @@ export function decodeToken(token) {
     const decoded = jwt.verify(token, process.env.cookie_password);
     userInfo.userId = decoded.id;
     userInfo.email = decoded.email;
+    userInfo.name = decoded.name;
   } catch (e) {
     console.log(e.message);
   }
