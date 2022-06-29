@@ -51,7 +51,9 @@ export const postsController = {
   },
 
   create: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const token = decodeToken(request.headers.authorization.split(' ')[1]);
@@ -64,6 +66,12 @@ export const postsController = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    payload: {
+      multipart: true,
+      output: "data",
+      maxBytes: 209715200,
+      parse: true
+    }
   },
 
   deleteAll: {

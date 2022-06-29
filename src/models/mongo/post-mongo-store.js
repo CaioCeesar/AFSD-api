@@ -1,4 +1,5 @@
 import { Post } from "./post.js";
+import { imageStore } from "./image-store.js"
 
 export const postMongoStore = {
   
@@ -24,6 +25,12 @@ export const postMongoStore = {
     let newPost = new Post(post);
     newPost.userId = token.userId;
     newPost.userName = token.name;
+    newPost.picture = await imageStore.uploadImage(post.picture);
+    
+    newPost.spots.map(async (x) => {
+      x.picture = await imageStore.uploadImage(x.picture);
+    })
+
     const postObj = await newPost.save();
     const u = await this.getPostById(postObj._id);
     return u;
