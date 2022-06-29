@@ -47,6 +47,12 @@ export const usersController = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    payload: {
+      multipart: true,
+      output: "data",
+      maxBytes: 209715200,
+      parse: true
+    }
   },
 
   deleteAll: {
@@ -75,7 +81,7 @@ export const usersController = {
           return Boom.unauthorized("Invalid password");
         }
         const token = createToken(user);
-        return h.response({ success: true, token: token }).code(201);
+        return h.response({ success: true, token: token, id: user._id, picture: user.picture  }).code(201);
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
       }

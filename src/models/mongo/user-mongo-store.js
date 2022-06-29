@@ -1,4 +1,5 @@
 import { User } from "./user.js";
+import { imageStore } from "./image-store.js"
 
 export const userMongoStore = {
   async getAllUsers() {
@@ -16,6 +17,7 @@ export const userMongoStore = {
 
   async addUser(user) {
     const newUser = new User(user);
+    newUser.picture = await imageStore.uploadImage(user.picture);
     const userObj = await newUser.save();
     const u = await this.getUserById(userObj._id);
     return u;

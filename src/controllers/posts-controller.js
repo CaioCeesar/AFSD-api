@@ -87,4 +87,18 @@ export const postsController = {
       }
     },
   },
+
+  deletePostById: {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request, h) {
+      try {
+        db.postStore.deletePostById(request.params.id);
+        return h.response().code(204);
+      } catch (err) {
+        return Boom.serverUnavailable("No Post with this id");
+      }
+    },
+  },
 };
