@@ -7,6 +7,10 @@ const userSchema = new Schema({
   picture: String,
   email: String,
   password: String,
+  admin: Boolean
+},
+{
+  timestamps: true
 });
 
 export const User = Mongoose.model("User", userSchema);

@@ -81,7 +81,7 @@ export const usersController = {
           return Boom.unauthorized("Invalid password");
         }
         const token = createToken(user);
-        return h.response({ success: true, token: token, id: user._id, picture: user.picture  }).code(201);
+        return h.response({ success: true, token: token, id: user._id, picture: user.picture, admin: user.admin  }).code(201);
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
       }

@@ -9,6 +9,9 @@ const postSchema = new Schema({
   spots: Array,
   userId: String,
   userName: String
+},
+{
+  timestamps: true
 });
 
 export const Post = Mongoose.model("Post", postSchema);
