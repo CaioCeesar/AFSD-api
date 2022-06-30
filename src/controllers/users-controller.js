@@ -69,6 +69,20 @@ export const usersController = {
     },
   },
 
+  deleteUserById: {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request, h) {
+      try {
+        db.userStore.deleteUserById(request.params.id);
+        return h.response().code(204);
+      } catch (err) {
+        return Boom.serverUnavailable("No User with this id");
+      }
+    },
+  },
+
   authenticate: {
     auth: false,
     handler: async function (request, h) {

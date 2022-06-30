@@ -14,4 +14,5 @@ export const apiRoutes = [
     { method: "POST", path: "/api/users", config: usersController.create },
     { method: "POST", path: "/api/users/authenticate", config: usersController.authenticate },
     { method: "DELETE", path: "/api/users", config: usersController.deleteAll },
+    { method: "DELETE", path: "/api/users/{id}", config: usersController.deleteUserById },
 ];
