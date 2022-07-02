@@ -58,6 +58,8 @@ Run this code to install the necessary dependencies.
    npm install
    ```
    
+Add your MongoDB url to the db variable in .env.
+
 ### Runing the project
 Run the following code to start the API
    ```sh
