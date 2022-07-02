@@ -22,7 +22,7 @@ export const postMongoStore = {
   },
 
   async addPost(post, token) {
-    let newPost = new Post(post);
+    const newPost = new Post(post);
     newPost.userId = token.userId;
     newPost.userName = token.name;
     newPost.picture = await imageStore.uploadImage(post.picture);

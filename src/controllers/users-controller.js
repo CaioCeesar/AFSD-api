@@ -1,6 +1,6 @@
 import Boom from "@hapi/boom";
 import { validationError } from "./logger.js";
-import { CreateUser, UserCredentialsSpec } from "../models/joi-schemas.js";
+import { UserCredentialsSpec } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
 import { createToken } from "../jwt-utils.js";
 

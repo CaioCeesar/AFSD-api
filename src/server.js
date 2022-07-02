@@ -1,12 +1,13 @@
 import Hapi from "@hapi/hapi";
-import { apiRoutes } from "./api-routes.js";
-import { db } from "./models/db.js";
 import jwt from "hapi-auth-jwt2";
 import dotenv from "dotenv";
-import { validate } from "./jwt-utils.js";
 import Vision from "@hapi/vision";
 import HapiSwagger from "hapi-swagger";
 import Inert from "@hapi/inert";
+import { validate } from "./jwt-utils.js";
+import { apiRoutes } from "./api-routes.js";
+import { db } from "./models/db.js";
+
 
 const result = dotenv.config();
 if (result.error) {
@@ -32,7 +33,6 @@ const init = async () => {
 
     const server = Hapi.server({
         port: process.env.PORT || 4000,
-        //port: 4000,
         routes: { cors: true },
       });
 
@@ -57,10 +57,10 @@ const init = async () => {
     db.init("mongo");
     server.route(apiRoutes);
     await server.start();
-    console.log('Server running on %s', server.info.uri);
+    console.log("Server running on %s", server.info.uri);
 };
 
-process.on('unhandledRejection', (err) => {
+process.on("unhandledRejection", (err) => {
 
     console.log(err);
     process.exit(1);

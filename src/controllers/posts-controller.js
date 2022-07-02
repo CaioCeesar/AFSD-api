@@ -11,7 +11,7 @@ export const postsController = {
     },
     handler: async function (request, h) {
       try {
-        const token = decodeToken(request.headers.authorization.split(' ')[1]);
+        const token = decodeToken(request.headers.authorization.split(" ")[1]);
         const posts = await db.postStore.getFeedPosts(token.userId);
         return posts;
       } catch (err) {
@@ -28,7 +28,7 @@ export const postsController = {
     },
     handler: async function (request, h) {
       try {
-        const token = decodeToken(request.headers.authorization.split(' ')[1]);
+        const token = decodeToken(request.headers.authorization.split(" ")[1]);
         const posts = await db.postStore.getProfilePosts(token.userId);
         return posts;
       } catch (err) {
@@ -64,7 +64,7 @@ export const postsController = {
     },
     handler: async function (request, h) {
       try {
-        const token = decodeToken(request.headers.authorization.split(' ')[1]);
+        const token = decodeToken(request.headers.authorization.split(" ")[1]);
         const post = await db.postStore.addPost(request.payload, token);
         if (post) {
           return h.response(post).code(201);
@@ -82,7 +82,6 @@ export const postsController = {
     },
     tags: ["api"],
     description: "Create Post",
-    validate: { payload: CreatePost, failAction: validationError },
   },
 
   deleteAll: {

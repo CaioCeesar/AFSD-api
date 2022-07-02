@@ -7,7 +7,7 @@ export const userSeed = {
         email: "admin@admin.com",
         password: "admin123",
         admin: true,
-        createdAt: '2022-05-01T13:22:57.794Z'
+        createdAt: "2022-05-01T13:22:57.794Z"
       },
       caio: {
         name: "Caio Cesar",
@@ -15,7 +15,7 @@ export const userSeed = {
         email: "CaioCesar@email.com",
         password: "Caio123",
         admin: false,
-        createdAt: '2022-04-01T13:22:57.794Z'
+        createdAt: "2022-04-01T13:22:57.794Z"
       },
       alan: {
         name: "Alan Piana",
@@ -23,7 +23,7 @@ export const userSeed = {
         email: "AlanPiana@email.com",
         password: "Alanl123",
         admin: false,
-        createdAt: '2022-06-01T13:22:57.794Z'
+        createdAt: "2022-06-01T13:22:57.794Z"
       },
       diego: {
         name: "Diego Cruz",
@@ -31,7 +31,7 @@ export const userSeed = {
         email: "DiegoCruz@email.com",
         password: "Diego123",
         admin: false,
-        createdAt: '2022-06-01T13:22:57.794Z'
+        createdAt: "2022-06-01T13:22:57.794Z"
       },
     },
   };
