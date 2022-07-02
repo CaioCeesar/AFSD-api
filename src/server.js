@@ -4,11 +4,29 @@ import { db } from "./models/db.js";
 import jwt from "hapi-auth-jwt2";
 import dotenv from "dotenv";
 import { validate } from "./jwt-utils.js";
+import Vision from "@hapi/vision";
+import HapiSwagger from "hapi-swagger";
+import Inert from "@hapi/inert";
 
 const result = dotenv.config();
 if (result.error) {
   console.log(result.error.message);
 }
+
+const swaggerOptions = {
+  info: {
+    title: "Travel Share API",
+    version: "1.0"
+  },
+  securityDefinitions: {
+    jwt: {
+      type: "apiKey",
+      name: "Authorization",
+      in: "header"
+    }
+  },
+  security: [{ jwt: [] }]
+};
 
 const init = async () => {
 
@@ -19,6 +37,15 @@ const init = async () => {
       });
 
       await server.register(jwt);
+      await server.register(Vision);
+      await server.register([
+        Inert,
+        Vision,
+        {
+          plugin: HapiSwagger,
+          options: swaggerOptions
+        }
+      ]);
 
       server.auth.strategy("jwt", "jwt", {
         key: process.env.cookie_password,
