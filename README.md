@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-<img src="https://raw.githubusercontent.com/CaioCeesar/AFSD-Front/main/src/assets/logo.png?token=GHSAT0AAAAAABVTLXLOYP5JQYSOFU3PTP3OYWAJTHQ" alt="Logo" width="650" height="250">
+<img src="https://res.cloudinary.com/dhwwwyljj/image/upload/v1656773236/yvjaxmnjqff7pulacazo.png" alt="Logo" width="650" height="250">
 
 
 <h3 align="center">Travel Share API</h3>
@@ -36,7 +36,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Travel Share is an application made as a final project for the course Advanced Full Stack Development in OTH Regensburg. The project is composed by two parts, the front-end made with Svelte framework for Javascript and the back-end, made with Hapi. 
+Travel Share is a website that you can share your travels with other users, in each post you can put spots and highlights of your travels, post pictures, divide the spots in categories and all of them are shown in a map, so you can track down your and other users routes.
+
+This application was made as a final project for the course Advanced Full Stack Development in OTH Regensburg. The project is composed by two parts, the front-end made with Svelte framework for Javascript and the back-end, made with Hapi. 
 <br/>
 <br/>
 <a href="https://github.com/CaioCeesar/AFSD-Front"><strong>Travel Share Front-end</strong></a> 
