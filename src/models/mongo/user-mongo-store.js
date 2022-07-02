@@ -1,5 +1,6 @@
 import { User } from "./user.js";
 import { imageStore } from "./image-store.js"
+import { postMongoStore } from "./post-mongo-store.js"
 
 export const userMongoStore = {
   async getAllUsers() {
@@ -33,6 +34,13 @@ export const userMongoStore = {
   async deleteUserById(id) {
     try {
       await User.deleteOne({ _id: id });
+
+      const posts = await postMongoStore.getProfilePosts(id);
+
+      posts.map(async (x) => {
+        await postMongoStore.deletePostById(x._id)
+      });
+
     } catch (error) {
       console.log("bad id");
     }

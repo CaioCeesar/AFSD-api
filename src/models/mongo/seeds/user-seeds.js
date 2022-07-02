@@ -21,7 +21,7 @@ export const userSeed = {
         name: "Alan Piana",
         picture: "https://extra.globo.com/incoming/25077364-723-9b7/w367h550-PROP/supla11.JPG",
         email: "AlanPiana@email.com",
-        password: "Alanl123",
+        password: "Alan123",
         admin: false,
         createdAt: "2022-06-01T13:22:57.794Z"
       },
