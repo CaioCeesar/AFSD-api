@@ -1,6 +1,8 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
 import { decodeToken } from "../jwt-utils.js";
+import { CreatePost, UserCredentialsSpec } from "../models/joi-schemas.js";
+import { validationError } from "./logger.js";
 
 export const postsController = {
   findFeed: {
@@ -16,8 +18,10 @@ export const postsController = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Get feed posts"
   },
-
+  
   findProfile: {
     auth: {
       strategy: "jwt",
@@ -31,6 +35,8 @@ export const postsController = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Get profile posts"
   },
 
   findOne: {
@@ -48,6 +54,8 @@ export const postsController = {
         return Boom.serverUnavailable("No Post with this id");
       }
     },
+    tags: ["api"],
+    description: "Get one post"
   },
 
   create: {
@@ -71,7 +79,10 @@ export const postsController = {
       output: "data",
       maxBytes: 209715200,
       parse: true
-    }
+    },
+    tags: ["api"],
+    description: "Create Post",
+    validate: { payload: CreatePost, failAction: validationError },
   },
 
   deleteAll: {
@@ -86,6 +97,8 @@ export const postsController = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Delete all posts"
   },
 
   deletePostById: {
@@ -100,5 +113,7 @@ export const postsController = {
         return Boom.serverUnavailable("No Post with this id");
       }
     },
+    tags: ["api"],
+    description: "Delete one Post"
   },
 };

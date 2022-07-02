@@ -1,4 +1,6 @@
 import Boom from "@hapi/boom";
+import { validationError } from "./logger.js";
+import { CreateUser, UserCredentialsSpec } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
 import { createToken } from "../jwt-utils.js";
 
@@ -15,6 +17,8 @@ export const usersController = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Get all users",
   },
 
   findOne: {
@@ -32,6 +36,8 @@ export const usersController = {
         return Boom.serverUnavailable("No User with this id");
       }
     },
+    tags: ["api"],
+    description: "Get One User",
   },
 
   create: {
@@ -52,7 +58,9 @@ export const usersController = {
       output: "data",
       maxBytes: 209715200,
       parse: true
-    }
+    },
+    tags: ["api"],
+    description: "Create User"
   },
 
   deleteAll: {
@@ -67,6 +75,8 @@ export const usersController = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Delete All Users",
   },
 
   deleteUserById: {
@@ -81,6 +91,8 @@ export const usersController = {
         return Boom.serverUnavailable("No User with this id");
       }
     },
+    tags: ["api"],
+    description: "Delete one user",
   },
 
   authenticate: {
@@ -100,5 +112,8 @@ export const usersController = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Login",
+    validate: { payload: UserCredentialsSpec, failAction: validationError },
   },
 };

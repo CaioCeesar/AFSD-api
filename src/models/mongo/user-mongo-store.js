@@ -17,7 +17,9 @@ export const userMongoStore = {
 
   async addUser(user) {
     const newUser = new User(user);
-    newUser.picture = await imageStore.uploadImage(user.picture);
+    if (newUser.picture.length > 0) {
+      newUser.picture = await imageStore.uploadImage(user.picture);
+    }
     const userObj = await newUser.save();
     const u = await this.getUserById(userObj._id);
     return u;

@@ -40,7 +40,8 @@ export let postSeed = {
         }
       ],
       userId: "",
-      userName: "Caio Cesar"
+      userName: "Caio Cesar",
+      createdAt: '2022-05-01T13:22:57.794Z'
     },
     post2: {
       title: "First day in Prague",
@@ -81,7 +82,8 @@ export let postSeed = {
         }
       ],
       userId: "",
-      userName: "Caio Cesar"
+      userName: "Caio Cesar",
+      createdAt: '2022-05-01T13:22:57.794Z'
     },
     post3: {
       title: "Street Food in Tokyo",
@@ -122,7 +124,8 @@ export let postSeed = {
         }
       ],
       userId: "",
-      userName: "Alan Piana"
+      userName: "Alan Piana",
+      createdAt: '2022-06-01T13:22:57.794Z'
     },
     post4: {
       title: "Happy weekend in Berlim :)",
@@ -155,7 +158,8 @@ export let postSeed = {
         },
       ],
       userId: "",
-      userName: "Diego Cruz"
+      userName: "Diego Cruz",
+      createdAt: '2022-07-01T13:22:57.794Z'
     },
   }
 };
